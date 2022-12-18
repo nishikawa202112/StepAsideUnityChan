@@ -16,12 +16,23 @@ public class ItemGenerator : MonoBehaviour
     private int goalPos = 360;
     //アイテムを出すx方向の範囲
     private float posRange = 3.4f;
+    //Unityちゃんのオブジェクト
+    private GameObject unitychan;
+    //アイテムを配置する場所
+    private int arrangementPos;
 
     // Use this for initialization
     void Start()
     {
-        //一定の距離ごとにアイテムを生成
-        for (int i = startPos; i < goalPos; i += 15)
+        //Unityちゃんのオブジェクトを取得
+        this.unitychan = GameObject.Find("unitychan");
+        arrangementPos = startPos;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (arrangementPos == ((int)(unitychan.transform.position.z + 40.0f)) && arrangementPos < goalPos)
         {
             //どのアイテムを出すのかをランダムに設定
             int num = Random.Range(1, 11);
@@ -31,12 +42,11 @@ public class ItemGenerator : MonoBehaviour
                 for (float j = -1; j <= 1; j += 0.4f)
                 {
                     GameObject cone = Instantiate(conePrefab);
-                    cone.transform.position = new Vector3(4 * j, cone.transform.position.y, i);
+                    cone.transform.position = new Vector3(4 * j, cone.transform.position.y, arrangementPos);
                 }
             }
             else
             {
-
                 //レーンごとにアイテムを生成
                 for (int j = -1; j <= 1; j++)
                 {
@@ -49,22 +59,17 @@ public class ItemGenerator : MonoBehaviour
                     {
                         //コインを生成
                         GameObject coin = Instantiate(coinPrefab);
-                        coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, i + offsetZ);
+                        coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, arrangementPos + offsetZ);
                     }
                     else if (7 <= item && item <= 9)
                     {
                         //車を生成
                         GameObject car = Instantiate(carPrefab);
-                        car.transform.position = new Vector3(posRange * j, car.transform.position.y, i + offsetZ);
+                        car.transform.position = new Vector3(posRange * j, car.transform.position.y, arrangementPos + offsetZ);
                     }
                 }
             }
+            arrangementPos += 15;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

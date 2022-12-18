@@ -3,7 +3,10 @@ guid: 4368ac7e60f294b1e90213202027bb4c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - carPrefab: {fileID: 8844004787508607745, guid: 28d51914169e045b383e4f8a2ae308da, type: 3}
+  - coinPrefab: {fileID: 3081507600631506901, guid: 5182f024a86674b958a03bea01b6d265, type: 3}
+  - conePrefab: {fileID: 5877805323788227318, guid: 6589c05302577468abc7954f81500dbc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
