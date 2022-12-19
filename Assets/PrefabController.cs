@@ -4,27 +4,19 @@ using UnityEngine;
 
 public class PrefabController : MonoBehaviour
 {
-    private new bool enabled = false;
+    //カメラオブジェクト
+    private GameObject maincamera;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.maincamera = GameObject.Find("Main Camera");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnBecameVisible()
-    {
-        enabled = true;
-    }
-
-    private void OnBecameInvisible()
-    {
-        if (enabled == true)
+        if (this.transform.position.z <= maincamera.transform.position.z)
         {
             Destroy(this.gameObject);
         }
